@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Activity Tracker</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form {
+            margin: 20px 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        a.button {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        a.button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            word-break: break-word;
+        }
+
+        table th {
+            background-color: #f4f4f4;
+        }
+
+        .responsive-img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+
+            input, textarea, button {
+                font-size: 14px;
+            }
+
+            h1, h2 {
+                font-size: 20px;
+            }
+
+            table th, table td {
+                font-size: 12px;
+                padding: 5px;
+                text-align: left;
+                display: block;
+                width: 100%;
+            }
+
+            table th, table td {
+                border: none;
+                padding: 5px 0;
+            }
+
+            table tr {
+                display: block;
+                margin-bottom: 10px;
+                border: 1px solid #ddd;
+                padding: 10px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            table th {
+                background-color: transparent;
+                text-align: left;
+            }
+
+            table td {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Activity Tracker</h1>
+        <form action="/add_upload" method="post" class="form">
+            <h2>Record Upload</h2>
+            <label for="admin_id">Admin ID:</label>
+            <input type="text" id="admin_id" name="admin_id" required>
+
+            <label for="num_images">Number of Images:</label>
+            <input type="number" id="num_images" name="num_images" required>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <form action="/add_interaction" method="post" class="form">
+            <h2>Record Interaction</h2>
+            <label for="admin_id">Admin ID:</label>
+            <input type="text" id="admin_id" name="admin_id" required>
+
+            <label for="num_comments">Number of Comments:</label>
+            <input type="number" id="num_comments" name="num_comments" required>
+
+            <label for="num_reactions">Number of Reactions:</label>
+            <input type="number" id="num_reactions" name="num_reactions" required>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <form action="/add_behavior" method="post" class="form">
+            <h2>Record Other Behavior</h2>
+            <label for="admin_id">Admin ID:</label>
+            <input type="text" id="admin_id" name="admin_id" required>
+
+            <label for="activity_type">Activity Type:</label>
+            <input type="text" id="activity_type" name="activity_type" required>
+
+            <label for="details">Details:</label>
+            <textarea id="details" name="details" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <a href="/summary" class="button">View Daily Summary</a>
+        
+    </div>
+</body>
+</html>

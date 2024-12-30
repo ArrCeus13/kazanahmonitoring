@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Summary</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Daily Summary</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Admin ID</th>
+                    <th>Total Uploads</th>
+                    <th>Total Images</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for report in reports %}
+                <tr>
+                    <td>{{ report[0] }}</td>
+                    <td>{{ report[1] }}</td>
+                    <td>{{ report[2] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Daily Summary Graph</h2>
+        <div class="graph-container">
+            <img src="{{ graph_url }}" alt="Graph" class="responsive-img">
+        </div>
+
+    <div class="container">
+        <h2>Behaviors</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Admin ID</th>
+                    <th>Activity Type</th>
+                    <th>Details</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for behavior in behaviors %}
+                <tr>
+                    <td>{{ behavior[0] }}</td>
+                    <td>{{ behavior[1] }}</td>
+                    <td>{{ behavior[2] }}</td>
+                    <td>{{ behavior[3] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+        <a href="/" class="button">Back to Home</a>
+    </div>
+</body>
+</html>
