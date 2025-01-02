@@ -99,8 +99,9 @@ def summary():
     cursor = conn.cursor()
 
     today = datetime.now().strftime('%Y-%m-%d')
-    cursor.execute('''SELECT admin_id, COUNT(*), SUM(num_images) FROM uploads 
-                      WHERE DATE(timestamp) = ? GROUP BY admin_id''', (today,))
+    cursor.execute('''SELECT admin_id, COUNT(*), SUM(num_images) 
+                  FROM uploads 
+                  GROUP BY admin_id''')
     reports = cursor.fetchall()
 
     admin_ids = []
@@ -130,9 +131,12 @@ def summary():
     graph_url = base64.b64encode(img.getvalue()).decode()
     graph_url = f"data:image/png;base64,{graph_url}"
 
-    cursor.execute('''SELECT admin_id, activity_type, details, timestamp FROM behaviors 
-                      WHERE DATE(timestamp) = ? ORDER BY timestamp''', (today,))
+    cursor.execute('''SELECT admin_id, activity_type, details, timestamp 
+                      FROM behaviors 
+                      ORDER BY timestamp''')
     behaviors = cursor.fetchall()
+
+    conn.close()
 
     return render_template('summary.html', reports=reports, graph_url=graph_url, behaviors=behaviors)
 

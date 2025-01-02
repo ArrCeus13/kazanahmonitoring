@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Upload</title>
+</head>
+<body>
+    <h1>Edit Upload</h1>
+    <form method="POST">
+        <label for="admin_id">Admin ID:</label>
+        <input type="text" id="admin_id" name="admin_id" value="{{ upload[1] }}" required>
+        
+        <label for="num_images">Number of Images:</label>
+        <input type="number" id="num_images" name="num_images" value="{{ upload[3] }}" required>
+        
+        <button type="submit">Save Changes</button>
+    </form>
+    <a href="/">Back to Home</a>
+</body>
+</html>
