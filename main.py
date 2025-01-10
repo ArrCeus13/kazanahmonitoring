@@ -99,13 +99,14 @@ def summary():
     cursor = conn.cursor()
 
     # Calculate the date 7 days ago
-    seven_days_ago = (datetime.now() - timedelta(days=7)).strftime('%Y-%m-%d')
+    seven_days_ago = (datetime.now() - timedelta(days=6)).strftime('%Y-%m-%d')
 
-    # Fetch data from the last 7 days
+    # Fetch data from the last 7 days, ordered by date
     cursor.execute('''SELECT admin_id, COUNT(*), SUM(num_images), strftime('%Y-%m-%d', timestamp) 
                       FROM uploads 
                       WHERE timestamp >= ? 
-                      GROUP BY admin_id, strftime('%Y-%m-%d', timestamp)''', (seven_days_ago,))
+                      GROUP BY admin_id, strftime('%Y-%m-%d', timestamp) 
+                      ORDER BY strftime('%Y-%m-%d', timestamp) ASC''', (seven_days_ago,))
     reports = cursor.fetchall()
 
     dates = []
@@ -117,6 +118,10 @@ def summary():
         dates.append(upload_date)
         total_uploads_list.append(total_uploads)
         total_images_list.append(total_images)
+
+    # Sort data by date
+    sorted_data = sorted(zip(dates, total_uploads_list, total_images_list), key=lambda x: x[0])
+    dates, total_uploads_list, total_images_list = zip(*sorted_data) if sorted_data else ([], [], [])
 
     # Generate graph
     img = io.BytesIO()
